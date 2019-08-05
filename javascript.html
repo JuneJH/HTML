@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="n">
+    <button type="button" id="btn1">计算2的n次幂，n可输入，n为自然数</button>
+    <button type="button" id="btn2">计算n的阶乘，n可输入</button>
+    <button type="button" id="btn3">斐波那契数列</button>
+    <button type="button" id="btn4">反向输出</button>
+
+<div class="mydiv"></div>
+
+    <script>
+        console.log("javaScript");
+        console.log("计算2的n次幂，n可输入，n为自然数");
+        var n = document.getElementById('n');
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+
+        btn1.onclick = function () {
+            var nvalue = n.value;
+            var nv = 1;
+            for (var i = 0; i < nvalue; i++) {
+                nv *= 2;
+            }
+            alert(nv);
+            console.log(nv);
+        }
+        console.log("计算n的阶乘，n可输入")
+        btn2.onclick = function () {
+            var nvalue = n.value;
+            var nv = 1;
+            for (var i = 1; i <= nvalue; i++) {
+                nv *= i;
+            }
+            alert(nv);
+            console.log(nv);
+        }
+        console.log("斐波那契数列")
+        var first = 1;
+        var f2 = 1;
+        var t3;
+        btn3.onclick = function () {
+            var nvalue = n.value;
+            for (var i = 1; i <= nvalue - 2; i++) {
+                t3 = first + f2;
+                first = f2;
+                f2 = t3
+            }
+            alert(t3);
+            console.log(t3);
+        }
+        console.log("反向输出")
+        btn4.onclick = function () {
+            var nvalue = n.value;
+            var b = parseInt(nvalue / 100);
+            var s = parseInt(nvalue % 100 / 10);
+            var g = parseInt(nvalue % 10);
+            var nv = g * 100 + s * 10 + b;
+            alert(nv);
+            console.log(nv);
+        }
+        console.log("质数")
+        var count = 0;
+        for (var i = 2; i < 100; i++) {
+            for (var j = 1; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                console.log(i);
+            }
+            count = 0;
+        }
+
+        function dw(aa) {
+            if (aa == "狗") {
+                console.log("wangwang")
+            } else if (aa == "猪") {
+                console.log("gonggong")
+            }
+        }
+        function add() {
+            var result = 0;
+            for (var i = 0; i < arguments.length; i++) {
+                result += arguments[i]
+            }
+            console.log("累加为:" + "    " + result)
+        }
+        function jc(n) {
+            var re = 1;
+            for (var i = 1; i <= n; i++) {
+                re *= i;
+            }
+            console.log(re)
+        }
+        function fj(n) {
+            var fir = 1;
+            var se = 1;
+            var th;
+            for (var i = 1; i < n - 1; i++) {
+                th = fir + se;
+                fir = se;
+                se = th
+            }
+            console.log(th);
+        }
+
+
+        //  递归
+        function jcd(n) {
+            if (n == 1) {
+                return 1;
+            }
+            return n * jcd(n - 1);
+        }
+        // fj
+        function myfb(n) {
+            if (n <= 2) {
+                return 1;
+            }
+            return myfb(n - 1) + myfb(n - 2);
+        }
+
+        //  输入10位数
+        function reade(n) {
+            var len = (String(n)).length;
+            var result = '';
+            for (var i = 0; i <= len - 1; i ++) {
+                // console.log(typeof n[i])
+                if(len - 4 == i && n[len - 4] == '0'){
+                    if(n[len - 3] != '0' || n[len - 2] != '0' || n[len - 1] != '0'){
+                        result += '零';
+                    }
+                    continue;
+                }
+                if(n[i] == '0'){
+                    continue;
+                }
+                result +=transfer(n[i]) + dw(len - i);
+            }
+            console.log(result + '元');
+
+        }
+        function dw(n) {
+            switch (n) {
+                case 10:
+                    return '拾亿';
+                case 9:
+                    return '亿'
+                case 8:
+                    return '仟萬'
+                case 7:
+                    return '佰萬'
+                case 6:
+                    return '拾萬'
+                case 5:
+                    return '萬'
+                case 4:
+                    return '千'
+                case 3:
+                    return '佰'
+                case 2:
+                    return '拾'
+                case 1:
+                    return ''
+
+
+
+            }
+        }
+        function transfer(n) {
+            switch (n) {
+                case '0':
+                    return '';
+                case '1':
+                    return '壹';
+                case '2':
+                    return '貳';
+                case '3':
+                    return '叁';
+                case '4':
+                    return '肆';
+                case '5':
+                    return '伍';
+                case '6':
+                    return '陆';
+                case '7':
+                    return '柒';
+                case '8':
+                    return '捌';
+                case '9':
+                    return '玖';
+
+
+            }
+
+
+        }
+        
+        function fn(n){
+            console.log(window.b)
+            console.log(n);
+            function n(){
+                var a = b = 10
+                // console.log("n")
+            }
+            n()
+
+        }
+        // AO = {
+        //     a:1,
+        //     b: function b(){},
+        //     c:undefined,
+        //     d:function d(){}
+
+
+        // }
+        //  
+        // 我去这题难  
+        // 
+        // var x = 1;
+        // if(function f(){}){   我的理解，此处加上（）即变成表达式，忽略其函数名。或者隐式转换Boolean()
+        //     x += typeof f;
+        //     console.log(typeof f)
+        // }
+        // console.log(x);  1undefined
+
+     (function () {
+         console.log('this now hander')
+     }())
+
+     var test = function tt(){
+         console.log("this is biaodashi")
+     }
+
+    //  属性私有化  闭包
+    var yunsuan = (function () {
+         var num = 0;
+         var obj = {
+             add : function () {
+                 num ++;
+                 console.log(num)
+             },
+             dix : function () {
+                 num --;
+                 console.log(num)
+             }
+         }
+         return obj;
+     }())
+     var dom = document.createElement("button");
+     dom.style.width= '100px';
+     dom.style.height = '100px';
+     dom.style.backgroundColor = '#008c8c';
+     dom.innerText = '+'
+     dom.onclick = function () {
+        yunsuan.add();
+     }
+     var body = document.getElementsByTagName('body')[0];
+     body.appendChild(dom);
+
+     var dix = document.createElement("button");
+     dix.style.width= '100px';
+     dix.style.height = '100px';
+     dix.style.backgroundColor = 'red';
+     dix.innerText = '-'
+     dix.onclick = function () {
+        yunsuan.dix();
+     }
+     var body = document.getElementsByTagName('body')[0];
+     body.appendChild(dix);
+
+
+  
+    function Foo() {
+    var i = 0;
+    return function() {
+        console.log(i++);
+    }
+}
+ 
+var f1 = Foo(),
+    f2 = Foo();
+f1();
+f1();
+f2();
+
+
+
+
+
+    </script>
+</body>
+
+</html>
