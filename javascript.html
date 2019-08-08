@@ -15,7 +15,7 @@
     <button type="button" id="btn3">斐波那契数列</button>
     <button type="button" id="btn4">反向输出</button>
 
-<div class="mydiv"></div>
+    <div class="mydiv"></div>
 
     <script>
         console.log("javaScript");
@@ -136,18 +136,18 @@
         function reade(n) {
             var len = (String(n)).length;
             var result = '';
-            for (var i = 0; i <= len - 1; i ++) {
+            for (var i = 0; i <= len - 1; i++) {
                 // console.log(typeof n[i])
-                if(len - 4 == i && n[len - 4] == '0'){
-                    if(n[len - 3] != '0' || n[len - 2] != '0' || n[len - 1] != '0'){
+                if (len - 4 == i && n[len - 4] == '0') {
+                    if (n[len - 3] != '0' || n[len - 2] != '0' || n[len - 1] != '0') {
                         result += '零';
                     }
                     continue;
                 }
-                if(n[i] == '0'){
+                if (n[i] == '0') {
                     continue;
                 }
-                result +=transfer(n[i]) + dw(len - i);
+                result += transfer(n[i]) + dw(len - i);
             }
             console.log(result + '元');
 
@@ -207,11 +207,11 @@
 
 
         }
-        
-        function fn(n){
+
+        function fn(n) {
             console.log(window.b)
             console.log(n);
-            function n(){
+            function n() {
                 var a = b = 10
                 // console.log("n")
             }
@@ -236,67 +236,87 @@
         // }
         // console.log(x);  1undefined
 
-     (function () {
-         console.log('this now hander')
-     }())
+        (function () {
+            console.log('this now hander')
+        }())
 
-     var test = function tt(){
-         console.log("this is biaodashi")
-     }
+        var test = function tt() {
+            console.log("this is biaodashi")
+        }
 
-    //  属性私有化  闭包
-    var yunsuan = (function () {
-         var num = 0;
-         var obj = {
-             add : function () {
-                 num ++;
-                 console.log(num)
-             },
-             dix : function () {
-                 num --;
-                 console.log(num)
-             }
-         }
-         return obj;
-     }())
-     var dom = document.createElement("button");
-     dom.style.width= '100px';
-     dom.style.height = '100px';
-     dom.style.backgroundColor = '#008c8c';
-     dom.innerText = '+'
-     dom.onclick = function () {
-        yunsuan.add();
-     }
-     var body = document.getElementsByTagName('body')[0];
-     body.appendChild(dom);
+        //  属性私有化  闭包
+        var yunsuan = (function () {
+            var num = 0;
+            var obj = {
+                add: function () {
+                    num++;
+                    console.log(num)
+                },
+                dix: function () {
+                    num--;
+                    console.log(num)
+                }
+            }
+            return obj;
+        }())
+        var dom = document.createElement("button");
+        dom.style.width = '100px';
+        dom.style.height = '100px';
+        dom.style.backgroundColor = '#008c8c';
+        dom.innerText = '+'
+        dom.onclick = function () {
+            yunsuan.add();
+        }
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(dom);
 
-     var dix = document.createElement("button");
-     dix.style.width= '100px';
-     dix.style.height = '100px';
-     dix.style.backgroundColor = 'red';
-     dix.innerText = '-'
-     dix.onclick = function () {
-        yunsuan.dix();
-     }
-     var body = document.getElementsByTagName('body')[0];
-     body.appendChild(dix);
-
-
-  
-    function Foo() {
-    var i = 0;
-    return function() {
-        console.log(i++);
-    }
-}
- 
-var f1 = Foo(),
-    f2 = Foo();
-f1();
-f1();
-f2();
+        var dix = document.createElement("button");
+        dix.style.width = '100px';
+        dix.style.height = '100px';
+        dix.style.backgroundColor = 'red';
+        dix.innerText = '-'
+        dix.onclick = function () {
+            yunsuan.dix();
+        }
+        var body = document.getElementsByTagName('body')[0];
+        body.appendChild(dix);
 
 
+
+        function Foo() {
+            var i = 0;
+            return function () {
+                console.log(i++);
+            }
+        }
+
+        var f1 = Foo(),
+            f2 = Foo();
+        f1();
+        f1();
+        f2();
+        console.log('sss')
+        var a = 5;
+        function testa() {
+            a = 0;
+            console.log(a);
+            console.log(this.a);
+            var a;
+            console.log(a);
+        }
+        new testa()
+
+        // 原型
+        Car.prototype.name = 'jj'
+        function Car() {
+            // this.name = 'jj';
+        }
+        Person.prototype.name = 'june'
+        function Person() {
+            // this.name = 'june'
+        }
+        var car = new Car();
+          
 
 
 
