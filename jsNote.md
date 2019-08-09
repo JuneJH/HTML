@@ -263,3 +263,40 @@ console.log(str) ---> '123'
 ##### call apply
 1. 改变this指向
 2. 第一个参数都是对象，call的后面参数为挨个写，apply为实参列表
+
+#### 继承模式
+
+1. 传统继承模式
+
+2. 借用构造函数
+
+3. 共享原型
+
+   - 不能随便改动自己的原型
+   Son.prototype = Father.prototype
+
+4. 圣杯模式
+   function F(){}
+   F.prototype = Father.prototype
+   Son.prototype = new F();
+```javascript
+// 封装圣杯模式继承方法
+function inherit(Target,Origin){
+  function F(){};
+  F.prototype = Origin.prototype;
+  Target.prototype = new F();
+  Target.prototype.constuctor = Target;
+  Taeget.prototype.uber = Origin.prototype;
+}
+
+//yahoo
+var inherit = (function (){
+  function F(){};
+  return function (Target,Origin){
+    F.prototype = Origin.prototype;
+    Target.prototype = new F();
+    Target.prototype.constuctor = Target;
+    Target.prototype.uber = Origin;
+  }
+}())
+```
