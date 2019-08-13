@@ -209,7 +209,101 @@ var obj = {
 ```
 以上代码不报错，但无意义
 
+<<<<<<< HEAD
 ##### 命名空间
 
 1. 对象形式
 2. 闭包形式
+=======
+#### 对象
+
+1. 删属性  delete 属性
+
+##### 对象的创建方法  
+1. var obj = {}  plainObject 对象字面量/对象直接量
+2. 构造函数 
+       - 系统自带的构造函数  Object()
+       - 自定义
+       - 操作符  new
+
+##### 构造函数内部原理
+
+1. 在函数体最前面隐式的添加
+  - var this = {};
+2. 执行 this.name = XXX;
+3. 隐式的添加
+  - return this
+
+##### 包装类
+
+var num = new Number(123);
+var str = new String('123');
+
+**原始值不能有属性，不报错，系统会隐式操作**
+包装类
+```javascript
+var str = '123';
+//隐式操作   new String('123').length = 2; delete
+str.length = 2;
+console.log(str) ---> '123'
+```
+
+#### 原型
+
+1. 原型是function对象的一个属性，它定义了构造函数制造出来的对象的共有祖先。通过该构造函数产生的对象，可以继承该原型的属性和方法。原型也是对象
+2. 利用原型的特点和概念，可以提取共有属性
+3. 对象如何查看原型---> 隐式属性_proto_   可以通过这个属性可以修改其原型。可以修改，不能增加，如果没有原型就不能增加
+4. 对象如何查看对象的构造函数---> 
+
+##### 原型链
+
+1. 如何构成原型链
+2. 原型链上的增删改查
+3. 绝大多数对象的最终都会继承自Object.prototype
+4. Object.creat(原型)  这个方法的参数可以是一个对象或者一个null，因此造成3中是绝大多数
+```javascipt
+   var obj = Object.creat(null);
+   <!-- 没有原型 -->
+```
+
+##### call apply
+1. 改变this指向
+2. 第一个参数都是对象，call的后面参数为挨个写，apply为实参列表
+
+#### 继承模式
+
+1. 传统继承模式
+
+2. 借用构造函数
+
+3. 共享原型
+
+   - 不能随便改动自己的原型
+   Son.prototype = Father.prototype
+
+4. 圣杯模式
+   function F(){}
+   F.prototype = Father.prototype
+   Son.prototype = new F();
+```javascript
+// 封装圣杯模式继承方法
+function inherit(Target,Origin){
+  function F(){};
+  F.prototype = Origin.prototype;
+  Target.prototype = new F();
+  Target.prototype.constuctor = Target;
+  Taeget.prototype.uber = Origin.prototype;
+}
+
+//yahoo
+var inherit = (function (){
+  function F(){};
+  return function (Target,Origin){
+    F.prototype = Origin.prototype;
+    Target.prototype = new F();
+    Target.prototype.constuctor = Target;
+    Target.prototype.uber = Origin;
+  }
+}())
+```
+>>>>>>> 8f425b78c9472c838ca68fe21a88248f0a788e69
