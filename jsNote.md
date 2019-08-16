@@ -238,6 +238,7 @@ var obj = {
 
 var num = new Number(123);
 var str = new String('123');
+原始值能有方法就是因为隐式发生  new Number()
 
 **原始值不能有属性，不报错，系统会隐式操作**
 包装类
@@ -307,3 +308,86 @@ var inherit = (function (){
 }())
 ```
 >>>>>>> 8f425b78c9472c838ca68fe21a88248f0a788e69
+
+##### 枚举 对象
+1. for in   ----- 会拿到原型上的方法(系统设的原型否，自己设置的会)    对象.hasOwnProperty(属性)
+            ----   in   判断是否是对象的包括原型（hasOwnProperty，区别）
+            ----- instanceof  A instanceof B   看A对象的原型链上  有没有 B的原型
+
+**判断数组和对象**
+1. constructor        数组的constructor为array
+2. instanceof
+3. toString   call   只有它没有问题，以上两个在父子域判断有误
+
+##### this
+1. 函数预编译过程this ---> window
+2. 全局作用域里this ----> window
+3. call/apply 可以改变函数运行时this指向
+4. obj.function();  function()里面的this指向obj
+
+
+##### arguments.callee
+得到函数的引用（指向函数自身引用）====立即执行函数需要找到自身（递归）
+es5失效
+##### func.caller
+得到在什么环境下运行
+es5失效
+
+#### 三目运算
+
+#### 数组
+
+1. 定义数组
+
+- 构造方法  var arr = new Array(10) 创建长度为10的稀松数组   填小数只有一位参数报错
+
+- 字面量
+
+2. 数组的读写
+ - 没毛病
+
+3. 改变原数组
+  - push
+  - pop   将数组最后一位剪切出来并返回出来
+  - shift  弹出数组第一位
+  - unshift 与push一样，方向相反，从数组前面加
+  - sort    排序  有接口  arr.sort(function (){})   1. 必须写2个形参    2. 看返回值  当返回值为负数，那么前面的数放在前面 正数  后面在前  0 不动
+  - reverse  把原数组逆转顺序并返回
+  - splice  参数（从第几位开始，截取多少的长度，在切口处添加新的数据），返回截取的数组
+4. 不改变原数组  返回一个新数组 关注参数
+  - concat 连接数组，返回一个新数组
+  - toString  将数组变成字符串
+  - slice  参数（从该位开始截取，截取到该位）
+  
+
+  - join   （按照此参数把数组进行连接返回字符串）
+
+  - split  （字符串的方法）  
+  
+  join ---- > split  互逆
+
+  #### 类数组
+  
+  属性要为索引（数字）属性 ，必须有length属性，最好加上push
+  加上splice
+
+  好处
+  对象和数组好处和在一起
+
+
+#### try...catch()
+
+try{
+
+}catch(e){
+
+}
+
+1. 在 try里面发生的错误，不会执行错误后的try里面的代码
+2. Error.name的六种值对应的信息
+ - EvalError: eval()的使用与定义不一致
+ - RangeError: 数值越界
+ - ReferenceError: 非法或不能识别的引用数值
+ - SyntaxError: 发生语法解析错误
+ - TypeError: 操作数类型错误
+ - UrlError:URL处理函数使用不当

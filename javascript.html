@@ -8,23 +8,35 @@
     <title>Document</title>
 </head>
 <style>
+    .cir {
+        width: 20px;
+        height: 10px;
+        border: 2px solid #008c8c;
+        border-top-width: 0px;
+        border-right-width: 0px;
+        transform: rotateZ(-45deg)
+            /* border-bottom-width:30px; */
+            /* border-top-color:#008c8c; */
+    }
 
-   .cir{
-       width:20px;
-       height:10px;
-       border:2px solid #008c8c;
-       border-top-width:0px;
-       border-right-width: 0px;
-
-       /* border-bottom-width:30px; */
-       /* border-top-color:#008c8c; */
-   }
-
-
-
+    .position-box {
+        width: 200px;
+        height: 200px;
+        background-color: #008c8c;
+        position: absolute;
+        top: 200px;
+    }
 </style>
 
 <body>
+
+    <div class="position-box">
+
+    </div>
+
+
+
+
     <div class="cir"></div>
     <input type="text" id="n">
     <button type="button" id="btn1">计算2的n次幂，n可输入，n为自然数</button>
@@ -35,7 +47,7 @@
     <div class="mydiv"></div>
 
 
-    
+
 
     <script>
         console.log("javaScript");
@@ -336,8 +348,118 @@
             // this.name = 'june'
         }
         var car = new Car();
-          
 
+
+        var meiju = {
+            name: 'june',
+            age: 13,
+            sex: 1
+        }
+        for (var prop in meiju) {
+            console.log(meiju[prop])
+        }
+
+        //  克隆
+        function clone(target, origin) {
+            var key;
+            for (key in target) {
+                origin[key] = target[key];
+            }
+        }
+        var oclone = {
+            ll: 'aa'
+        }
+        clone(meiju, oclone)
+
+
+        // 深层克隆
+        function deepClone(origin, target) {
+            target = target || {};
+            for (var prop in origin) {
+                if (origin[prop] !== null && typeof (origin[prop]) === 'object') {
+                    if (myTypeof(origin[prop]) == 'Array') {
+                        target[prop] = [];
+                    } else {
+                        target[prop] = {}
+                    }
+
+                    deepClone(origin[prop], target[prop]);
+                } else {
+                    target[prop] = origin[prop];
+                }
+            }
+            return target;
+        }
+
+        var Oclone = {
+            name: 'this is clone origin',
+            age: '2019/8/15',
+            hobbit: {
+                sport: 'football',
+                food: 'good food',
+            },
+            wifu: ['xiaoliu', 'xiaozhang', 'xiaoma']
+
+        }
+        var Mclone = {
+
+        }
+
+        deepClone(Oclone, Mclone);
+
+
+
+        // =============================================
+
+
+        // 给一个数组 乱序
+
+
+        var sortArr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        sortArr.sort(function () {
+            return Math.random() - 0.5
+
+        })
+
+        // 封装typeof
+        function myTypeof(obj) {
+            if (obj === null) {
+                return "null"
+            }
+            if (typeof (obj) == "object") {
+                var type = toString.call(obj);
+                switch (type) {
+                    case "[object Array]": return 'Array';
+                    case "[object object]": return 'object';
+                    case "[object Number]": return 'object Number';
+                    case "[object String]": return 'object String';
+                }
+            } else {
+                return typeof (obj);
+            }
+        }
+      // 数组去重
+      Array.prototype.unique = function (){
+          var obj = {},
+          target = [];
+          for(var i = 0; i < this.length; i ++){
+              if(!obj[this[i]]){
+                obj[this[i]] = "zw";
+                target.push(this[i])
+              }
+          }
+          return target;
+      }
+
+      try{
+          console.log('this is try!!!');
+          console.log(error);
+          console.log('try 里面的语句报错就停止运行，运行catch(e)的代码')
+
+      }catch(e){
+        console.log('try里面的代码发生错误执行我，e这个对象装了错误信息，和错误，名字'+ "  " + e)
+      }
+          
 
 
     </script>
